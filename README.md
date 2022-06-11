@@ -126,42 +126,38 @@ Cr.Course_Req_ID =C.Course_Req_ID join University U on Ap.university_ID
 ![image](https://user-images.githubusercontent.com/84727716/173187406-a482b626-9487-430f-8cd2-9263e92a1595.png)
 
 Query1: Number of Applications to Northeastern University
-Match (n:Application)-[:Applied_university]-(u:University)
+Match (n:Application)-[:Applied_university]-(u:University) 
 where u.University_Name= 'Northeastern University'
 return count(n.Applicant_Id)
+![image](https://user-images.githubusercontent.com/84727716/173187430-477b5902-428a-48fb-8383-624d84876972.png)
+
 Query2: Top 5 courses in Northeastern University based on the Fee Range
 Match(c:Course)-[:offers]-(d:Department)-[:Has]-(u:University)
 return count(c.Course_Name) as number,u.University_Name
 order by number desc
+![image](https://user-images.githubusercontent.com/84727716/173187442-3c6221fa-14b2-45ac-ae42-0070f6fe5908.png)
+
 Query3: Number of Courses offered by a University
 Match(c:Course)-[:offers]-(d:Department)-[:Has]-
 (u:University) where u.University_Name= 'Northeastern University'
 return c.Course_Name order by c.Fees Limit 5
-5. Accessing Database Using Python
+![image](https://user-images.githubusercontent.com/84727716/173187446-4f95ae94-d21a-4af9-8ff3-6dff261a7e46.png)
+
+## 5. Accessing Database Using Python
 Python’s Seaborn library was used to visualize the output of SQL Queries. The graphs data
 matched with the output of SQL queries.
 Mysql Database is connected to python using Mysql.Connector and mycursor.execute and
 mycursor.fetchall() is used to fetch the query outputs. Seaborn package is used to visualize
 the query outputs.
+
 Graph1: Intake of Students to different countries
+![image](https://user-images.githubusercontent.com/84727716/173187456-7e84e296-ce4a-45c0-ba98-678c28eceedf.png)
+![image](https://user-images.githubusercontent.com/84727716/173187460-2971a575-2a0c-4976-b6cb-634092b9b653.png)
+
 Graph2: Average Salary of students place for every company in a university
-6. Summary and Recommendation
-The Students database in My SQL helps students to choose universities based on their profile
-and observe the trends in the companies that hire students from the universities. Based on the
-intake of students to the universities and their pay range financial organizations can prioritize
-educational loans to the students. Python Seaborn package is used to analyse and visualize
-Number of students to different countries, average salary range of students graduating from
-each university. All the data imported and populated is real data which helps in drawing
-better insights. The data is also analysed and visualized using Neo4j graph database. Cypher
-language is used to query the Neo4j database.
-One improvement in the database model that we observed after designing the database is
-there can be few GPA Centric and Research Centric colleges that give preference to students
-having achievements in these respective fields. By calculating the percentile of each student
-among all other students for a particular intake we can determine the highest percentile value
-of a student among GRE Scores, GPA, and Research Work. These statistics can be leveraged
-to provide better university suggestions to the students. Also the Veracity of data is a concern
-to be noted. As there are many organizations that try to take an advantage of these type of
-applications by introducing fake student profiles which would change the accuracy of the
-model and affect its efficiency. Taking inputs from only valid international students by
-introducing a feature of mentioning passport Number or Mobile Number to use this
-application would answer this security concern.
+![image](https://user-images.githubusercontent.com/84727716/173187470-a5ab9704-db58-4ce7-ad94-3a0f6acd9ec1.png)
+![image](https://user-images.githubusercontent.com/84727716/173187472-c92a4ca8-f9a7-42fa-b533-db5fea185ee3.png)
+
+## 6. Summary and Recommendation
+The Students database in My SQL helps students to choose universities based on their profile and observe the trends in the companies that hire students from the universities. Based on the intake of students to the universities and their pay range financial organizations can prioritize educational loans to the students. Python Seaborn package is used to analyse and visualize Number of students to different countries, average salary range of students graduating from each university. All the data imported and populated is real data which helps in drawing better insights. The data is also analysed and visualized using Neo4j graph database. Cypher
+language is used to query the Neo4j database. One improvement in the database model that we observed after designing the database is there can be few GPA Centric and Research Centric colleges that give preference to students having achievements in these respective fields. By calculating the percentile of each student among all other students for a particular intake we can determine the highest percentile value of a student among GRE Scores, GPA, and Research Work. These statistics can be leveraged to provide better university suggestions to the students. Also the Veracity of data is a concern to be noted. As there are many organizations that try to take an advantage of these type of applications by introducing fake student profiles which would change the accuracy of the model and affect its efficiency. Taking inputs from only valid international students by introducing a feature of mentioning passport Number or Mobile Number to use this application would answer this security concern.
